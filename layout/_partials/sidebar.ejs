@@ -27,6 +27,75 @@
     </div>
   </div>
   <div class="body">
+    <div class="search-area">
+      <input type="text" id="search-box" placeholder="Search By RegExp \*.*/" />
+      <button id="search-submit">GO</button><br />
+      <div id="search-result">
+        What's RegExp?
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" style="color: #cfe3cb" target="_blank">Here</a>
+      </div>
+      <script type="text/javascript" async>
+      (function() {
+        const searchBox = document.getElementById("search-box")
+        const searchResult = document.getElementById("search-result")
+        searchBox.addEventListener("keydown", e => {
+          if (e.key.toLowerCase() === "enter") {
+            search(searchBox.value)
+          }
+        });
+        document.getElementById("search-submit").addEventListener("click", () => {
+          search(searchBox.value)
+        });
+        function search(text) {
+          searchResult.innerHTML = "Loading...";
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", "/search.xml", true)
+          xhr.responseType = "document";
+          xhr.overrideMimeType("text/xml");
+          xhr.onreadystatechange = () => {
+            if (xhr.readyState === xhr.DONE) {
+              if (xhr.status === 200 || xhr.status === 304) {
+                render(analyzeData(xhr.response, text));
+              }
+            }
+          };
+          xhr.send(null);
+        }
+        function analyzeData(doc, text) {
+          const entries = doc.getElementsByTagName("entry");
+          const matchEntries = [];
+          for (var entry of entries) {
+            const regExp = new RegExp(text);
+            if (regExp.test(entry.children[0].textContent) ||
+                regExp.test(entry.children[2].textContent)) {
+              matchEntries.push(entry)
+            }
+          }
+          return matchEntries;
+        }
+        function render(entries) {
+          searchResult.innerHTML = "<ul>" + entries.map(entry => {
+            return "<li><a href=\"" + entry.children[1].textContent + "\">" +
+              "<h3>" + entry.children[0].textContent + "</h3></a>" +
+              removeHtmlTags(entry.children[2].textContent).substring(0, 60) + "..." +
+              "</li>";
+          }) + "</ul>";
+        }
+        const matches = {
+          '&': '&amp;',
+          "'": '&#x27;',
+          '`': '&#x60;',
+          '"': '&quot;',
+          '<': '&lt;',
+          '>': '&gt;'
+        };
+        function removeHtmlTags (string) {
+          return string.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, "")
+            .replace(/[&'`"<>]/g, match => matches[match]);
+        }
+      })();
+      </script>
+    </div>
     <% if (theme.nav && theme.nav.length) { %>
       <% theme.nav.forEach(function(list) { %>
         <ul class="nav">
