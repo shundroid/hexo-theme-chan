@@ -1,6 +1,6 @@
 <div class="sidebar">
   <div class="header">
-    <h1 class="title"><a href="<%- url_for('/') %>"><%= config.title %></a></h1>
+    <h1 class="title"><a href="<%- url_for('/') %>"><!--<%= config.title %>-->*.*</a></h1>
     <% if (config.subtitle) { %>
       <p class="subtitle">
         <%= config.subtitle %>
@@ -12,10 +12,10 @@
           <div class="description"><%= config.description %></div>
         <% } %>
         <% if (config.author) { %>
-          <div class="author"><%= config.author %></div>
+          <div class="author">by <%= config.author %></div>
         <% } %>
       </div>
-      <% if (theme.avatar) { %>
+      <!-- <% if (theme.avatar) { %>
         <div class="avatar">
           <% if (theme.avatarLink) { %>
             <a href="<%= theme.avatarLink %>"><img src="<%= theme.avatar %>"></a>
@@ -23,7 +23,7 @@
             <img src="<%= theme.avatar %>">
           <% } %>
         </div>
-      <% } %>
+      <% } %> -->
     </div>
   </div>
   <div class="body">

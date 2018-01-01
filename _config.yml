@@ -34,11 +34,17 @@ nav:
       url: /archives
   -
     -
-      name: Chan
-      url: https://github.com/denjones/hexo-theme-chan
+      name: Profile
+      url: /profile
+    -
+      name: About This Site
+      url: /about
     -
       name: Github
-      url: https://github.com/denjones
+      url: https://github.com/shundroid
+    -
+      name: Youtube
+      url: https://www.youtube.com/channel/UC7SEX9GABXlBaCb9vZVPIfg
     -
       name: RSS
       url: /atom.xml
