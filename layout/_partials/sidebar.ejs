@@ -79,7 +79,7 @@
               "<h3>" + entry.children[0].textContent + "</h3></a>" +
               removeHtmlTags(entry.children[2].textContent).substring(0, 60) + "..." +
               "</li>";
-          }) + "</ul>";
+          }).join("") + "</ul>";
         }
         const matches = {
           '&': '&amp;',
