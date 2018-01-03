@@ -17,13 +17,12 @@
   }
 %>
 
-<title>
-  <% if (title){ %>
-    <%= title %>
-  <% } else { %>
-    <%= config.title %>
-  <% } %>
-</title>
+<% if (title){ %>
+  <title><%= title %> - asterisks</title>
+<% } else { %>
+  <title>top - <%= config.title %></title>
+  <meta name="description" content="JavaScript, C#, Unity など、様々な情報をお届けします。" />
+<% } %>
 
 <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
 

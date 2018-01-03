@@ -2,7 +2,7 @@
 
 # site setting
 rss: /atom.xml
-favicon: /favicon.png
+favicon: /favicon.ico
 
 # style setting
 monochrome: true
@@ -54,6 +54,7 @@ nav:
 # If you use disqus then you should set disqus_shortname in your site config and disable duoshuo here.
 # You also need to set 'comments' to true in the front-matter
 #duoshuo: sprabbit
+disqus_shortname: asterisks
 
 # jiathis share id
 # refer to http://jiathis.com
@@ -66,7 +67,7 @@ fb_admins:
 fb_app_id:
 
 # analytics ids
-google_analytics:
+google_analytics: UA-55214112-4
 baidu_statistics:
 
 # default creative commons
